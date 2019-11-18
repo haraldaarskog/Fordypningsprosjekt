@@ -1,5 +1,5 @@
 
-path="/Users/haraldaarskog/GoogleDrive/Fordypningsprosjekt/Kode/output/output_TEST.txt"
+path="/Users/hara/Downloads/Fordypningsprosjekt-master/IKKE_SE_HER_JOHANNES/output/output_TEST.txt"
 deleteContentOfFile(path)
 
 println()

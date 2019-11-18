@@ -1,6 +1,6 @@
 include("fileHandler.jl")
 
-fileName="/Users/haraldaarskog/GoogleDrive/Fordypningsprosjekt/Kode/BP_parameters.txt"
+fileName="/Users/hara/Downloads/Fordypningsprosjekt-master/IKKE_SE_HER_JOHANNES/BP_parameters.txt"
 I=readFromFile(fileName)["I"][1]
 U=readFromFile(fileName)["U"][1]
 S=readFromFile(fileName)["S"][1]
