@@ -49,7 +49,7 @@ end
 #Constraints that deals with demand. Either comment out the two first ones, or the third one.
 #@constraint(m, [i=1:I, u=1:U], sum(x[i,u,s,d] for s=1:S, d=1:D)<=(D_iuW_NY[i,u]+Percentage)*sum(x[i,u,s,d] for i=1:I, u=1:U, s=1:S, d=1:D))
 #@constraint(m, [i=1:I, u=1:U], sum(x[i,u,s,d] for s=1:S, d=1:D)>=(D_iuW_NY[i,u]-Percentage)*sum(x[i,u,s,d] for i=1:I, u=1:U, s=1:S, d=1:D))
-@constraint(m,[i=1:I,u=1:U], sum(x[i,u,s,d] for s=1:S,d=1:D)==15*D_iuW[i,u])
+@constraint(m,[i=1:I,u=1:U], sum(x[i,u,s,d] for s=1:S,d=1:D)==D_iuW[i,u])
 
 #All the available slots has to be filled up
 @constraint(m,[s=1:S,d=1:D], sum(x[i,u,s,d] for i=1:I,u=1:U)<=N_sd[s,d]-S_sd[s,d])

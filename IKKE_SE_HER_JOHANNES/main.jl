@@ -1,9 +1,11 @@
 using JuMP, Gurobi, PyCall
-#plt = pyimport("matplotlib.pyplot")
+
+input_file="/Users/hara/Downloads/Fordypningsprosjekt-master/IKKE_SE_HER_JOHANNES/BP_parameters_OUS.txt"
+output_file="/Users/hara/Downloads/Fordypningsprosjekt-master/IKKE_SE_HER_JOHANNES/output/output_TEST.txt"
+
 include("setsAndParameters.jl")
 
-
-
+#***********************************Variables***********************************
 m = Model(with_optimizer(Gurobi.Optimizer))
 @variable(m, p[1:D,1:R] >= 0, Int)
 @variable(m, q[1:D,1:R] >= 0, Int)
@@ -31,3 +33,4 @@ println("Primal status: ",primal_status(m))
 println("Dual status: ",dual_status(m))
 println("Objective value: ", objective_value(m))
 include("printer.jl")
+printOutput(false)
