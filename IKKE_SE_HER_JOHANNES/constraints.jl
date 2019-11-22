@@ -1,14 +1,16 @@
-#Deltas
-@constraint(m,[d=1:D, r=1:R], q[d,r]-p[d,r] + open_task_dr[d,r]==G)
+#Constraints connecting p, q, G and y
+#@constraint(m,[d=1:D, r=1:R], q[d,r]-p[d,r] + t[d,r]==G)
+@constraint(m,[d=1:D, r=1:R], t[d,r] <=y[d])
+
 
 #minimum number of hours a radiologist can work per day
-@constraint(m,[d=1:D,r=1:R], open_task_dr[d,r] + sum(T_im[i,m]*w[i,u,d,r,m]  for i=1:I,u=1:U, m in [1,2])+sum(scanning_time_sd[s,d]*beta[s,d,r] for s=1:S)+sum(MDT_interpretation_time_i[i]*gamma[i,d,r] for i=1:I)>=K_dr[d,r]-Q_d)
+@constraint(m,[d=1:D,r=1:R], t[d,r] + sum(T_im[i,m]*w[i,u,d,r,m]  for i=1:I,u=1:U, m in [1,2])+sum(scanning_time_sd[s,d]*beta[s,d,r] for s=1:S)+sum(MDT_interpretation_time_i[i]*gamma[i,d,r] for i=1:I)>=K_dr[d,r]-Q_d)
 
 #maximum number of hours a radiologist can work per day
-@constraint(m,[d=1:D,r=1:R], open_task_dr[d,r] + sum(T_im[i,m]*w[i,u,d,r,m]  for i=1:I,u=1:U, m in [1,2])+sum(scanning_time_sd[s,d]*beta[s,d,r] for s=1:S)+sum(MDT_interpretation_time_i[i]*gamma[i,d,r] for i=1:I)<=K_dr[d,r]+Q_d)
+@constraint(m,[d=1:D,r=1:R], t[d,r] + sum(T_im[i,m]*w[i,u,d,r,m]  for i=1:I,u=1:U, m in [1,2])+sum(scanning_time_sd[s,d]*beta[s,d,r] for s=1:S)+sum(MDT_interpretation_time_i[i]*gamma[i,d,r] for i=1:I)<=K_dr[d,r]+Q_d)
 
 #The total number of working hours for each radiologist must equal Q_w
-@constraint(m, [r=1:R], sum(open_task_dr[d,r] for d=1:D)+sum(T_im[i,m]*w[i,u,d,r,m] for i=1:I, u=1:U, d=1:D, m in [1,2]) + sum(scanning_time_sd[s,d]*beta[s,d,r] for s=1:S, d=1:D)+sum(MDT_interpretation_time_i[i]*gamma[i,d,r] for i=1:I, d=1:D)==Q_w)
+@constraint(m, [r=1:R], sum(t[d,r] for d=1:D)+sum(T_im[i,m]*w[i,u,d,r,m] for i=1:I, u=1:U, d=1:D, m in [1,2]) + sum(scanning_time_sd[s,d]*beta[s,d,r] for s=1:S, d=1:D)+sum(MDT_interpretation_time_i[i]*gamma[i,d,r] for i=1:I, d=1:D)==Q_w)
 
 #The sum of all internal interpretation tasks for u a given day h must equal the number of w[m=1] the same day
 #The same goes to v.
@@ -49,7 +51,7 @@ end
 #Constraints that deals with demand. Either comment out the two first ones, or the third one.
 #@constraint(m, [i=1:I, u=1:U], sum(x[i,u,s,d] for s=1:S, d=1:D)<=(D_iuW_NY[i,u]+Percentage)*sum(x[i,u,s,d] for i=1:I, u=1:U, s=1:S, d=1:D))
 #@constraint(m, [i=1:I, u=1:U], sum(x[i,u,s,d] for s=1:S, d=1:D)>=(D_iuW_NY[i,u]-Percentage)*sum(x[i,u,s,d] for i=1:I, u=1:U, s=1:S, d=1:D))
-@constraint(m,[i=1:I,u=1:U], sum(x[i,u,s,d] for s=1:S,d=1:D)==D_iuW[i,u])
+@constraint(m,[i=1:I,u=1:U], sum(x[i,u,s,d] for s=1:S,d=1:D)==5*D_iuW[i,u])
 
 #All the available slots has to be filled up
 @constraint(m,[s=1:S,d=1:D], sum(x[i,u,s,d] for i=1:I,u=1:U)<=N_sd[s,d]-S_sd[s,d])

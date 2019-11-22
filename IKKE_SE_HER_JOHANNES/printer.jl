@@ -3,6 +3,18 @@ deleteContentOfFile(output_file)
 function printOutput(boo)
     if boo==true
         println()
+        println("****** Variable: y[d] ******")
+    end
+    for d=1:D
+        if boo==true
+            println("y[",d,"] = ", value(y[d]))
+        end
+    end
+
+
+
+    if boo==true
+        println()
         println("****** Variable: x[i,u,s,d] ******")
         writeToFile(output_file,"\n\n"*"****** Variable: x[i,u,s,d] ******\n")
     end
@@ -45,9 +57,9 @@ function printOutput(boo)
             if boo==true
                 println("Day:", d)
             end
-            if value(open_task_dr[d,r])!=0
+            if value(t[d,r])!=0
                 if boo==true
-                    println("open_task[",d,",",r,"] = ", value(open_task_dr[d,r]))
+                    println("t[",d,",",r,"] = ", value(t[d,r]))
                 end
             end
             for s=1:S
