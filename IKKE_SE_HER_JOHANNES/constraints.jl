@@ -1,7 +1,24 @@
-#Constraints connecting p, q, G and y
-#@constraint(m,[d=1:D, r=1:R], q[d,r]-p[d,r] + t[d,r]==G)
-@constraint(m,[d=1:D, r=1:R], t[d,r] <=y[d])
 
+#Constraints connecting p, q, G and y
+#Bjørn
+@constraint(m,[d=1:D, r=1:R], q[d,r]-p[d,r] + t[d,r]==G)
+@constraint(m,[d=1:D, r=1:R], q[d,r]+p[d,r]<=y[d])
+
+#Ikke-bjørn
+#@constraint(m,[d=1:D,r=1:R], t[d,r] <= y[d])
+#Sum-Ikke-Bjørn
+#@constraint(m,[d=1:D], sum(t[d,r] for r=1:R) <= y[d])
+
+
+
+#Bjørn NEDRE
+#@constraint(m,[d=1:D, r=1:R], q[d,r]+p[d,r]<=y[d])
+#@constraint(m,[d=1:D, r=1:R], q[d,r]+p[d,r]>=a[d])
+
+#AlternativJohannes
+#compu gjort med - mellom. Like mye over som under. Gir mening
+#@constraint(m,[d=1:D], sum(q[d,r]-p[d,r] for r=1:R)<=y[d])
+#@constraint(m,[d=1:D], a[d] <= sum(q[d,r]-p[d,r] for r=1:R))
 
 #minimum number of hours a radiologist can work per day
 @constraint(m,[d=1:D,r=1:R], t[d,r] + sum(T_im[i,m]*w[i,u,d,r,m]  for i=1:I,u=1:U, m in [1,2])+sum(scanning_time_sd[s,d]*beta[s,d,r] for s=1:S)+sum(MDT_interpretation_time_i[i]*gamma[i,d,r] for i=1:I)>=K_dr[d,r]-Q_d)

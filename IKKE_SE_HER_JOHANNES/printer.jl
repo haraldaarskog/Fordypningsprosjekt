@@ -1,6 +1,23 @@
 deleteContentOfFile(output_file)
 
 function printOutput(boo)
+
+    if boo==true
+
+        println()
+        println("****** Number of open radiologist hours ******")
+        for d=1:D
+            sum_t=0
+            for r=1:R
+                sum_t+=value(t[d,r])
+            end
+            println("Sum of t on day ", d," = ", sum_t)
+        end
+    end
+
+
+
+
     if boo==true
         println()
         println("****** Variable: y[d] ******")

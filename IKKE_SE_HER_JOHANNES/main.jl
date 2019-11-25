@@ -1,8 +1,10 @@
 using JuMP, Gurobi, PyCall
 
-input_file="/Users/haraldaarskog/GoogleDrive/Fordypningsprosjekt/Kode/BP_parameters.txt"
-output_file="/Users/haraldaarskog/GoogleDrive/Fordypningsprosjekt/Kode/output/output.txt"
+#defining the input and output files
+input_file="/Users/johanlin/Downloads/Fordypningsprosjekt-master/IKKE_SE_HER_JOHANNES/BP_parameters.txt"
+output_file="/Users/johanlin/Downloads/Fordypningsprosjekt-master/IKKE_SE_HER_JOHANNES/output/output_TEST.txt"
 
+#sets and parameters
 include("setsAndParameters.jl")
 
 #***********************************Variables***********************************
@@ -16,21 +18,21 @@ m = Model(with_optimizer(Gurobi.Optimizer))
 @variable(m, alpha[1:I,1:U,1:D], Bin)
 @variable(m, beta[1:S,1:D,1:R], Bin)
 @variable(m, gamma[1:I,1:D,1:R], Bin)
-#@variable(m, zeta[1:S,1:D]>=0, Int) #number of open slots at the scanner s at day d
-@variable(m, t[1:D,1:R] >=0, Int)
+@variable(m, t[1:D,1:R] >=0)
 @variable(m, y[1:D] >=0)
+@variable(m, a[1:D] >=0)
 #****************************************************************************************
-
-
-
 
 
 #***********************************Objective function***********************************
 #@objective(m, Min, sum(p[d,r]+q[d,r] for d=1:D, r=1:R));
 @objective(m, Min, sum(y[d] for d=1:D))
-#****************************************************************************************
-include("constraints.jl")
+#@objective(m, Min, sum(y[d]-a[d] for d=1:D))
 
+#****************************************************************************************
+
+#Constraints
+include("constraints.jl")
 
 #***********************************Solving*****************************************************
 optimize!(m)
