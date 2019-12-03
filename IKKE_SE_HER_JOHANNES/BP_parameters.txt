@@ -35,7 +35,7 @@
 ;
 
 
-#MDT_interpretation_time_i
+#T_i_MD
 3
 3
 3
@@ -98,7 +98,7 @@
 3
 ;
 
-#scanning_time_sd
+#T_sd_Scan
 9 9 9 9 9
 9 9 9 9 9
 9 9 9 9 9
@@ -121,7 +121,7 @@
 9 9 9 9 9
 ;
 
-#Preferanse_ir
+#C_ir
 999
 ;
 
@@ -586,11 +586,6 @@
 0 0 0 1 0
 0 0 0 1 0
 ;
-
-#Percentage
-0.04
-;
-
 
 #Q_w
 40
