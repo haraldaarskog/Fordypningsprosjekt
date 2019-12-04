@@ -33,6 +33,9 @@ function readFromFile(text)
     array=[]
     flag=false
     for element in a
+        if occursin("#", element)
+            continue
+        end
         if flag==true && occursin(";", element)
             ja=arrayToMatrix(array)
             push!(dict, key=>ja)
@@ -43,7 +46,7 @@ function readFromFile(text)
         if flag==true
             push!(array, element)
         end
-        if occursin("#",element)
+        if occursin("%",element)
             key=element[2:end]
             flag=true
         end
