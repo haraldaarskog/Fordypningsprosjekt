@@ -1,23 +1,23 @@
 include("fileHandler.jl")
 
-#Sets
+#Set sizes
 
-#Set of patient groups
+#The number of patient groups
 I = readFromFile(input_file)["I"][1]
 
-#Set of urgency classes
+#The number of urgency classes
 U = readFromFile(input_file)["U"][1]
 
-#Set of scanners
+#The number of scanners
 S = readFromFile(input_file)["S"][1]
 
-#Set of days in planning horizon
+#The number of days in planning horizon
 D = H = readFromFile(input_file)["D"][1]
 
-#Set of radiologists
+#The number of radiologists
 R = readFromFile(input_file)["R"][1]
 
-#Set of interpretation tasks
+#The number of interpretation tasks
 M = readFromFile(input_file)["M"][1]
 
 
