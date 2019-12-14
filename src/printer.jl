@@ -143,7 +143,7 @@ function printOutput(boo)
                     for r=1:R
                         if value(u_var[i,u,d,h,r]) != 0
                             if boo==true
-                                println("u[",i,",",u,",",d,",",h,",",r,"] = ", value(u_var[i,u,d,h,r]))
+                                println("u_var[",i,",",u,",",d,",",h,",",r,"] = ", value(u_var[i,u,d,h,r]))
                             end
                             writeToFile(output_file,"u_var["*repr(i)*","*repr(u)*","*repr(d)*","*repr(h)*","*repr(r)*"] = " *repr(value(u_var[i,u,d,h,r]))*"\n")
 

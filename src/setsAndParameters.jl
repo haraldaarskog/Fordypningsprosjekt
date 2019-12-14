@@ -2,22 +2,22 @@ include("fileHandler.jl")
 
 #Set sizes
 
-#The number of patient groups
+#Number of patient groups
 I = readFromFile(input_file)["I"][1]
 
-#The number of urgency classes
+#Number of urgency classes
 U = readFromFile(input_file)["U"][1]
 
-#The number of scanners
+#Number of scanners
 S = readFromFile(input_file)["S"][1]
 
-#The number of days in planning horizon
+#Number of days in planning horizon
 D = H = readFromFile(input_file)["D"][1]
 
-#The number of radiologists
+#Number of radiologists
 R = readFromFile(input_file)["R"][1]
 
-#The number of interpretation tasks
+#Number of interpretation tasks
 M = readFromFile(input_file)["M"][1]
 
 
@@ -66,7 +66,7 @@ Q_d = readFromFile(input_file)["Q_d"][1]
 Q_w = readFromFile(input_file)["Q_w"][1]
 
 #Number of interpretation tasks from external patients throughout the week
-E_iu1 =readFromFile(input_file)["E_iu1"]
+E_iu1 = readFromFile(input_file)["E_iu1"]
 E_iu2 = readFromFile(input_file)["E_iu2"]
 E_iu3 = readFromFile(input_file)["E_iu3"]
 E_iu4 = readFromFile(input_file)["E_iu4"]
